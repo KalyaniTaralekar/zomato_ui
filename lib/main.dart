@@ -89,7 +89,9 @@ class OrderPage extends StatelessWidget {
                       topRight: Radius.circular(18),
                     ),
                     image: DecorationImage(
-                        image: AssetImage("momos.jpg"), fit: BoxFit.cover),
+                      image: AssetImage("momos.jpg"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 )
               ],
