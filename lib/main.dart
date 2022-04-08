@@ -36,42 +36,87 @@ class OrderPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            header(size),
-            searchBar(size),
-            SizedBox(
-              height: 10,
-            ),
-            optionAvailable(),
-            banner(),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Recommended For You",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              header(size),
+              searchBar(size),
+              SizedBox(
+                height: 10,
               ),
+              optionAvailable(),
+              banner(),
+              heading("Eat what makes you happy"),
+              itemsGrid(),
+              heading("Recommended For You"),
+              recommendSection(),
+              heading("965 restuarants around you"),
+              restrntsAvailable(size)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget item(String imgVal, String name) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: Image.asset(
+              imgVal,
+              fit: BoxFit.cover,
             ),
-            recommendSection(),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "965 restuarants around you",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            restrntsAvailable(size)
-          ],
+          ),
+        ),
+        SizedBox(
+          height: 6,
+        ),
+        Text(name),
+        SizedBox(
+          height: 10,
+        ),
+      ],
+    );
+  }
+
+  Widget itemsGrid() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GridView.count(
+        shrinkWrap: true,
+        crossAxisCount: 4,
+        childAspectRatio: 1,
+        children: [
+          item("momos.jpg", "Momos"),
+          item("pizza.jpg", "Pizza"),
+          item("burger.jpg", "Burger"),
+          item("chicken.jpg", "Chicken"),
+          item("biryani.jpg", "Biryani"),
+          item("pasta.jpg", "Pasta"),
+          item("healthy.jpg", "Healthy"),
+          item("fries.jpg", "Fries"),
+        ],
+      ),
+    );
+  }
+
+  Widget heading(String text) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            text,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
         ),
       ),
     );
