@@ -77,27 +77,51 @@ class OrderPage extends StatelessWidget {
     );
   }
 
+  Widget restrntsCard(Size size, String heading, String subheading,
+      String trailing, String imgVal) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 5,
+      shadowColor: Colors.grey,
+      child: Wrap(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+            child: Image.asset(
+              imgVal,
+              height: 170,
+              width: size.width,
+              fit: BoxFit.cover,
+            ),
+          ),
+          ListTile(
+            trailing: Text(
+              trailing,
+              style: TextStyle(fontSize: 13),
+            ),
+            title: Text(
+              heading,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Container(child: Text(subheading)),
+          )
+        ],
+      ),
+    );
+  }
+
   Widget restrntsAvailable(Size size) {
     return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 300,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(18),
-              topRight: Radius.circular(18),
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              "momos.jpg",
-              fit: BoxFit.fill,
-            ),
-          ),
-        )
+      children: <Widget>[
+        restrntsCard(size, "Her Highness", "North Indian ,Kashmiri ,Chinese",
+            "Rs350 for one", "northindian.jpeg"),
+        restrntsCard(size, "Cookie Man", "Desserts ,Ice Cream,Bakery",
+            "Rs250 for two", "cookie.jpg"),
+        restrntsCard(size, "Best Belgian Waffle", "Waffle , Desserts,Beverages",
+            "Rs150 for one", "waffle.jpg")
       ],
     );
   }
@@ -154,7 +178,7 @@ class OrderPage extends StatelessWidget {
                 heading,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              subtitle: Text(subHeading),
+              subtitle: Container(child: Text(subHeading)),
             )
           ],
         ),
