@@ -35,70 +35,70 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          header(size),
-          searchBar(size),
-          SizedBox(
-            height: 10,
-          ),
-          optionAvailable(),
-          banner(),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Recommended For You",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            header(size),
+            searchBar(size),
+            SizedBox(
+              height: 10,
+            ),
+            optionAvailable(),
+            banner(),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Recommended For You",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
               ),
             ),
-          ),
-          recommendSection(),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "965 restuarants around you",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            recommendSection(),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "965 restuarants around you",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                 ),
               ),
             ),
-          ),
-          restrntsAvailable(size)
-        ],
+            restrntsAvailable(size)
+          ],
+        ),
       ),
     );
   }
 
   Widget restrntsAvailable(Size size) {
-    return Expanded(
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return Container(
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(18),
-                      topRight: Radius.circular(18),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage("momos.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )
-              ],
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 300,
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(18),
+              topRight: Radius.circular(18),
             ),
-          );
-        },
-      ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              "momos.jpg",
+              fit: BoxFit.fill,
+            ),
+          ),
+        )
+      ],
     );
   }
 
