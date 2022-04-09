@@ -18,9 +18,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class OrderPage extends StatelessWidget {
+class OrderPage extends StatefulWidget {
   OrderPage({Key? key}) : super(key: key);
 
+  @override
+  State<OrderPage> createState() => _OrderPageState();
+}
+
+class _OrderPageState extends State<OrderPage> {
   final List<String> options = [
     "Pro",
     "TakeAway",
@@ -30,6 +35,8 @@ class OrderPage extends StatelessWidget {
     "Max Safety",
     "Fastest Delivery"
   ];
+
+  bool showAll = false;
 
   @override
   Widget build(BuildContext context) {
@@ -89,27 +96,42 @@ class OrderPage extends StatelessWidget {
   Widget itemsGrid() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: GridView.count(
-        shrinkWrap: true,
-        crossAxisCount: 4,
-        childAspectRatio: 1,
+      child: Column(
         children: [
-          item("momos.jpg", "Momos"),
-          item("pizza.jpg", "Pizza"),
-          item("burger.jpg", "Burger"),
-          item("chicken.jpg", "Chicken"),
-          item("biryani.jpg", "Biryani"),
-          item("pasta.jpg", "Pasta"),
-          item("healthy.jpg", "Healthy"),
-          item("fries.jpg", "Fries"),
-          item("momos.jpg", "Momos"),
-          item("pizza.jpg", "Pizza"),
-          item("burger.jpg", "Burger"),
-          item("chicken.jpg", "Chicken"),
-          item("biryani.jpg", "Biryani"),
-          item("pasta.jpg", "Pasta"),
-          item("healthy.jpg", "Healthy"),
-          item("fries.jpg", "Fries"),
+          GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: 4,
+            childAspectRatio: 1,
+            children: [
+              item("momos.jpg", "Momos"),
+              item("pizza.jpg", "Pizza"),
+              item("burger.jpg", "Burger"),
+              item("chicken.jpg", "Chicken"),
+              item("biryani.jpg", "Biryani"),
+              item("pasta.jpg", "Pasta"),
+              item("healthy.jpg", "Healthy"),
+              item("fries.jpg", "Fries"),
+              if (showAll) ...[
+                item("momos.jpg", "Momos"),
+                item("pizza.jpg", "Pizza"),
+                item("burger.jpg", "Burger"),
+                item("chicken.jpg", "Chicken"),
+                item("biryani.jpg", "Biryani"),
+                item("pasta.jpg", "Pasta"),
+                item("healthy.jpg", "Healthy"),
+                item("fries.jpg", "Fries"),
+              ]
+            ],
+          ),
+          if (!showAll)
+            OutlinedButton(
+              onPressed: () {
+                setState(() {
+                  showAll = true;
+                });
+              },
+              child: Text("See More"),
+            )
         ],
       ),
     );
@@ -151,9 +173,45 @@ class OrderPage extends StatelessWidget {
             ),
           ),
           ListTile(
-            trailing: Text(
-              trailing,
-              style: TextStyle(fontSize: 13),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4.0,
+                      horizontal: 6.0,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "4.4",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.white,
+                          size: 14,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Text(
+                  trailing,
+                  style: TextStyle(fontSize: 13),
+                ),
+              ],
             ),
             title: Text(
               heading,
@@ -292,9 +350,12 @@ class OrderPage extends StatelessWidget {
         height: 58,
         margin: EdgeInsets.all(8.0),
         child: ListTile(
-          leading: FaIcon(
-            FontAwesomeIcons.locationDot,
-            color: kred,
+          leading: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            child: FaIcon(
+              FontAwesomeIcons.locationDot,
+              color: kred,
+            ),
           ),
           trailing: Icon(
             Icons.account_circle_outlined,
@@ -308,34 +369,7 @@ class OrderPage extends StatelessWidget {
           ),
           subtitle:
               Container(child: Text("259/11,Hariganga Society,Yerawada,Pune")),
-        )
-        // Row(
-        //   children: [
-        //     FaIcon(
-        //       FontAwesomeIcons.locationDot,
-        //       color: kred,
-        //     ),
-        //     Expanded(
-        //       child: Padding(
-        //         padding: const EdgeInsets.all(25.0),
-        //         child: Text(
-        //           "Add Your Location Here",
-        //           style: TextStyle(
-        //               fontSize: 19, fontWeight: FontWeight.bold, color: kred),
-        //         ),
-        //       ),
-        //     ),
-        //     IconButton(
-        //       onPressed: () {},
-        //       icon: Icon(
-        //         Icons.account_circle_outlined,
-        //         color: kred,
-        //         size: 28,
-        //       ),
-        //     )
-        //   ],
-        // ),
-        );
+        ));
   }
 
   Widget searchBar(Size size) {
