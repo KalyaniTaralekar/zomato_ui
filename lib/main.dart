@@ -130,7 +130,13 @@ class _OrderPageState extends State<OrderPage> {
                   showAll = true;
                 });
               },
-              child: Text("See More"),
+              child: Container(
+                  width: double.infinity,
+                  child: Center(
+                      child: Text(
+                    "See More",
+                    style: TextStyle(color: Colors.grey),
+                  ))),
             )
         ],
       ),
