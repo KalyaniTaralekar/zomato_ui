@@ -68,10 +68,10 @@ class OrderPage extends StatelessWidget {
       children: [
         Expanded(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(300),
             child: Image.asset(
               imgVal,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ),
@@ -94,6 +94,14 @@ class OrderPage extends StatelessWidget {
         crossAxisCount: 4,
         childAspectRatio: 1,
         children: [
+          item("momos.jpg", "Momos"),
+          item("pizza.jpg", "Pizza"),
+          item("burger.jpg", "Burger"),
+          item("chicken.jpg", "Chicken"),
+          item("biryani.jpg", "Biryani"),
+          item("pasta.jpg", "Pasta"),
+          item("healthy.jpg", "Healthy"),
+          item("fries.jpg", "Fries"),
           item("momos.jpg", "Momos"),
           item("pizza.jpg", "Pizza"),
           item("burger.jpg", "Burger"),
@@ -281,34 +289,53 @@ class OrderPage extends StatelessWidget {
 
   Widget header(Size size) {
     return Container(
-      margin: EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          FaIcon(
+        height: 58,
+        margin: EdgeInsets.all(8.0),
+        child: ListTile(
+          leading: FaIcon(
             FontAwesomeIcons.locationDot,
             color: kred,
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Text(
-                "Add Your Location Here",
-                style: TextStyle(
-                    fontSize: 19, fontWeight: FontWeight.bold, color: kred),
-              ),
-            ),
+          trailing: Icon(
+            Icons.account_circle_outlined,
+            color: kred,
+            size: 30,
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.account_circle_outlined,
-              color: kred,
-              size: 28,
-            ),
-          )
-        ],
-      ),
-    );
+          title: Text(
+            "Home",
+            style: TextStyle(fontWeight: FontWeight.bold, color: kred),
+            textAlign: TextAlign.left,
+          ),
+          subtitle:
+              Container(child: Text("259/11,Hariganga Society,Yerawada,Pune")),
+        )
+        // Row(
+        //   children: [
+        //     FaIcon(
+        //       FontAwesomeIcons.locationDot,
+        //       color: kred,
+        //     ),
+        //     Expanded(
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(25.0),
+        //         child: Text(
+        //           "Add Your Location Here",
+        //           style: TextStyle(
+        //               fontSize: 19, fontWeight: FontWeight.bold, color: kred),
+        //         ),
+        //       ),
+        //     ),
+        //     IconButton(
+        //       onPressed: () {},
+        //       icon: Icon(
+        //         Icons.account_circle_outlined,
+        //         color: kred,
+        //         size: 28,
+        //       ),
+        //     )
+        //   ],
+        // ),
+        );
   }
 
   Widget searchBar(Size size) {
